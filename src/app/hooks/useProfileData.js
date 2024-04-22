@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const useProfileData = () => {
-	const [profile, setProfile] = useState(null);
+	const [profileData, setProfileData] = useState(null);
 	const [error, setError] = useState(null);
 	const router = useRouter();
 	const name = useSearchParams().get("name");
@@ -15,7 +15,7 @@ const useProfileData = () => {
 					return response.json();
 				})
 				.then((data) => {
-					setProfile(data.profile);
+					setProfileData(data);
 					setError(null);
 				})
 				.catch((error) => {
@@ -24,7 +24,7 @@ const useProfileData = () => {
 		}
 	}, [router.query, name]);
 
-	return { profile, error };
+	return { profileData, error };
 };
 
 export default useProfileData;

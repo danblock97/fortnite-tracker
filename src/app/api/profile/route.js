@@ -5,24 +5,26 @@ export async function GET(req, res) {
 	const name = req.nextUrl.searchParams.get("name");
 
 	if (!name) {
-		return NextResponse.error(new Error("Name is required"), { status: 400 });
+		res.status(400).send("Missing required parameters");
+		return;
 	}
 
 	const profileResponse = await fetch(
 		`https://fortnite-api.com/v2/stats/br/v2?timeWindow=season&name=${name}`,
 		{
 			headers: {
-				Authorization: `Bearer ${process.env.FORTNITE_API_KEY}`,
+				Authorization: process.env.FORTNITE_API_KEY,
 			},
 			revalidatePath: revalidatePath(req.nextUrl.pathname),
 		}
 	);
 
 	if (!profileResponse.ok) {
-		return NextResponse.error(new Error("Profile not found"), { status: 404 });
+		res.status(500).send("Failed to fetch data");
+		return;
 	}
 
-	const profile = await profileResponse.json();
+	const profileData = await profileResponse.json();
 
-	return NextResponse.json(profile);
+	return NextResponse.json(profileData);
 }
