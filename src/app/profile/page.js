@@ -7,7 +7,7 @@ const Page = () => {
 	const { profileData, error: profileError } = useProfileData();
 
 	return (
-		<div className="min-h-screen bg-gray-700 overflow-hidden">
+		<div className="min-h-screen bg-[#23439b] overflow-hidden">
 			{profileData ? (
 				<>
 					<Profile profileData={profileData} />

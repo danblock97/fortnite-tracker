@@ -4,11 +4,11 @@ const Profile = ({ profileData }) => {
 
 	const renderStatsSection = (title, statData) => (
 		<>
-			<h3 className="text-lg text-center text-indigo-300 font-bold my-2">
+			<h3 className="text-lg md:text-xl text-center text-indigo-300 font-bold my-2">
 				{title}
 			</h3>
 			{statData ? (
-				<div className="grid grid-cols-3 gap-4 text-center">
+				<div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
 					<div>
 						<p className="text-gray-400">WINS</p>
 						<p className="text-xl">{statData.wins}</p>
@@ -45,17 +45,19 @@ const Profile = ({ profileData }) => {
 	);
 
 	return (
-		<div className="flex justify-center items-center h-screen bg-gray-700">
-			<div className="bg-blue-gray-800 text-white font-bold py-6 px-8 w-full max-w-4xl rounded-lg shadow-xl">
-				<div className="flex justify-between items-start">
+		<div className="flex flex-col justify-center items-center h-auto sm:h-screen bg-[#23439b] px-4 py-4 sm:p-0 mt-16 sm:mt-0">
+			<div className="bg-blue-gray-800 text-white font-bold py-6 px-4 md:px-8 w-full max-w-4xl rounded-lg shadow-xl">
+				<div className="flex flex-col sm:flex-row justify-between items-start">
 					<div>
-						<h2 className="text-3xl text-indigo-300">{account.name}</h2>
-						<p className="text-xl text-gray-400">
+						<h2 className="text-2xl md:text-3xl text-indigo-300">
+							{account.name}
+						</h2>
+						<p className="text-lg md:text-xl text-gray-400">
 							Battle Pass Level: {battlePass.level}
 						</p>
 					</div>
 					<div>
-						<h2 className="text-2xl text-blue-300">
+						<h2 className="text-xl md:text-2xl text-blue-300">
 							CHAPTER 5 SEASON 2
 						</h2>
 					</div>
