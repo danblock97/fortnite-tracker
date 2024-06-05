@@ -4,10 +4,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 const useProfileData = () => {
 	const [profileData, setProfileData] = useState(null);
 	const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 	const name = useSearchParams().get("name");
 
 	useEffect(() => {
+		setIsLoading(true);
 		if (name) {
 			fetch(`/api/profile?name=${name}`)
 				.then((response) => {
@@ -20,11 +22,11 @@ const useProfileData = () => {
 				})
 				.catch((error) => {
 					setError(error.message || "An error occurred");
-				});
+				}).finally(setIsLoading(false));
 		}
 	}, [router.query, name]);
 
-	return { profileData, error };
+	return { profileData, isLoading, error };
 };
 
 export default useProfileData;

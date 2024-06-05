@@ -1,12 +1,11 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET(req) {
 	const name = req.nextUrl.searchParams.get("name");
 
 	if (!name) {
-		res.status(400).send("Missing required parameters");
-		return;
+		throw new Error("Missing required parameter 'name'");
 	}
 
 	const profileResponse = await fetch(
@@ -20,8 +19,7 @@ export async function GET(req, res) {
 	);
 
 	if (!profileResponse.ok) {
-		res.status(500).send("Failed to fetch data");
-		return;
+		throw new Error("Failed to fetch data");
 	}
 
 	const profileData = await profileResponse.json();
