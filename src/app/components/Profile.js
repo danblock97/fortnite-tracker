@@ -58,7 +58,7 @@ const Profile = ({ profileData }) => {
 					</div>
 					<div>
 						<h2 className="text-xl md:text-2xl text-blue-300">
-							CHAPTER 5 SEASON 2
+							CHAPTER 5 SEASON 3
 						</h2>
 					</div>
 				</div>
